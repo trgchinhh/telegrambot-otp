@@ -4,8 +4,15 @@
 
 Đây là một dự án nhỏ mô phỏng cách hoạt động của xác thực đa yếu tố, tập trung vào hình thức xác thực hai yếu tố (2FA) phổ biến hiện nay. Nhiều dịch vụ lớn như Google, Facebook và GitHub đều hỗ trợ 2FA bằng cách gửi mã xác minh (OTP) qua SMS, email hoặc ứng dụng xác thực nhu Google Authenticator để xác nhận danh tính người dùng, giúp tăng cường bảo mật và giảm nguy cơ truy cập trái phép vào tài khoản.
 
+## Video demo
+![VideoDemo](docs/demo.gif)
+
+---
+
 Cảm hứng được lấy từ video của anh **Vũ Nguyễn Coder**<br>
 Video lấy cảm hứng: [Xác thực đa yếu tố Vũ Nguyễn Coder](https://www.youtube.com/watch?v=9Okd87cZ0mw)
+
+---
 
 ## Tính năng 
 
