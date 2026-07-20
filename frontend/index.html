@@ -1,98 +1,42 @@
 <!DOCTYPE html>
-<html>
+<html lang="vi">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>xin chào</title>
+    <title>Demo Otp Telegram</title>
+    <!-- Nhúng file CSS bên ngoài -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <form id='loginform'>
-        <div id="userfield">
-            <label>Username: </label>
-            <input type="text" name="username" id="username">
-        </div>
-        <div id="passwordfield">
-            <label>Password: </label>
-            <input type="password" name="password" id="password">
-            <button type="button" id="showhidepassword">Show/Hide</button>
-        </div>
-        <div id="otpfield" style="display: none">
-            <label>OTP: </label>
-            <input type="text" name="otp" id="otp">
-        </div>
-        <div>
-            <button type="submit" id="loginbutton">Login</button>
-            <button type="button" id="confirmbutton" style="display: none;">Confirm</button>
-        </div>
-    </form> 
+    <div class="login-container">
+        <h2>Vui lòng điền vào form sau !</h2>
+        <form id="loginform">
+            <!-- Trường nhập Username -->
+            <div id="userfield" class="input-group">
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" placeholder="Nhập tên đăng nhập">
+            </div>
+            
+            <div id="passwordfield" class="input-group">
+                <label for="password">Password</label>
+                <div class="password-wrapper">
+                    <input type="password" name="password" id="password" placeholder="Nhập mật khẩu">
+                    <button type="button" id="showhidepassword" title="Ẩn/Hiện mật khẩu">Ẩn/Hiện</button>
+                </div>
+            </div>
+            
+            <div id="otpfield" class="input-group" style="display: none;">
+                <label for="otp">Mã xác thực OTP</label>
+                <input type="text" name="otp" id="otp" placeholder="Nhập mã OTP gồm 6 chữ số">
+            </div>
+            
+            <div class="button-group">
+                <button type="submit" id="loginbutton" class="btn btn-primary">Tiếp tục</button>
+                <button type="button" id="confirmbutton" class="btn btn-success" style="display: none;">Xác nhận OTP</button>
+            </div>
+        </form> 
+    </div>
 
-    <script>
-        // bọc user data gửi cho backend xử lý 
-        // nhập gửi lần 1 
-        document.getElementById("loginform")
-            .addEventListener("submit", async function (event) {
-            event.preventDefault();
-            const formdata = new FormData(this);
-            const data = {
-                username: formdata.get("username"),
-                password: formdata.get("password")
-            };
-            try {
-                const respone = await fetch("http://localhost:3000/login", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(data)
-                });
-                if(respone.status === 200){
-                    document.getElementById("passwordfield").style.display = "none"
-                    document.getElementById("userfield").style.display = "none"
-                    document.getElementById("loginbutton").style.display = "none"
-                    document.getElementById("otpfield").style.display = "block"
-                    document.getElementById("confirmbutton").style.display = "block"
-
-                    // alert("Login succesfull");
-                } else {
-                    alert("Xác thực thất bại !");
-                }
-            } catch(error){
-
-            }
-        })
-
-        // bọc otp gửi cho backend xử lý 
-        // nhập user otp gửi lần 2 
-        document.getElementById("confirmbutton")
-            .addEventListener("click", async function(event) {
-                //const username = document.getElementById("username").value;
-                const userotp = document.getElementById("otp").value;
-                try {
-                    const respone = await fetch("http://localhost:3000/confirm", {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json"
-                        },
-                        body: JSON.stringify({userotp})
-                    });
-                    if(respone.status === 200){
-                        alert("Đăng nhập thành công !");
-                    } else {
-                        alert("Đăng nhập thất bại !");
-                    }
-                } catch(error){
-
-                }
-            });
-
-        // ẩn hiện password
-        document.getElementById("showhidepassword").addEventListener("click", () => {
-            const passwordinput = document.getElementById("password");
-            if(passwordinput.type == "password")
-                passwordinput.type = "text"
-            else 
-                passwordinput.type = "password"
-        })
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
