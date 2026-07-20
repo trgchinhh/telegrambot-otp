@@ -17,7 +17,7 @@ const user_db = [
     {username: "tu", password: "9999"},
 ]
 
-// bot telegram send otp
+// bot telegram
 const api_bot = process.env.API_BOT;
 const port = process.env.PORT;
 let chatidglobal = null;
